@@ -1,9 +1,9 @@
 # Unpacking Nested Structures
 data = ("Alice", (25, "Engineer"), ["Reading", "Traveling", "Swimming"])
 name, (age, profession), [hobbies, travel, swimming] = data
-# hobbies[0] = data[0] # Alice
-# print(hobbies[2]) # Swimming
-hobbies = data[0] # Alice
+# hobbies = data[1] (25, "Engineer")
+# print(hobbies[1]) # R
+# print(hobbies[2]) # e
 print(f"Name: {name}, Age: {age}, Profession: {profession}, Hobbies: {hobbies}, Travel: {travel}, Swimming: {swimming}")
 # Name: Alice, Age: 25, Profession: Engineer, Hobbies: Alice, Travel: Swimming, Swimming: Swimming
 
