@@ -9,7 +9,7 @@ def print_names(*names):
     for name in names:
         print(name)
 print_names(["Tanmay",21], ["Ankita",23], ["Rohan",21])
-
+per
 #combining list
 list1 = [1, 2, 3, 4, 5]
 list2 = [3,9,12,15]
@@ -34,7 +34,7 @@ print(f"a: {a}, b: {b}")
 #demonstrate exec
 def demonstrate_exec():
     code = """def greet(name):
-    return f"Hello, {name}!" """
+    return f"Hello, {name}!\""""
     local_scope = {}
     exec(code, {}, local_scope)
     greeting = local_scope['greet']("Tanmay")
