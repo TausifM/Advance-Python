@@ -1,5 +1,6 @@
 name : str= " Tanmay"
 age : int = 21
 is_student : bool = True
-def greet(x: str, age:int) -> str:
-    return f"Hello, my name is {x} and I am {age} years old."
+def greet(name: str, age:int):
+    return f"Hello, my name is {name} and I am {age} years old."
+print(greet(name, age))

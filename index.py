@@ -1,7 +1,10 @@
 # make an api listerner route port 5000 using FastAPI
 
 from fastapi import FastAPI
+from routers import products
 app = FastAPI()
+app.include_router(products.router)
+
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
