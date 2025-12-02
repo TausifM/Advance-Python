@@ -1,5 +1,5 @@
 # make an api listerner route port 5000 using FastAPI
-
+from routers import user
 from fastapi import FastAPI
 from routers import products
 app = FastAPI()

@@ -27,3 +27,19 @@ async def update_product(product_id: str, product: Product):
     await db.products.update_one({"_id": ObjectId(product_id)}, {"$set": product_dict}) # update_one is the method to update a document in a MongoDB collection
     product_dict["_id"] = product_id
     return ProductResponse(**product_dict)
+
+@router.get("/{product_id}", response_model=ProductResponse)
+async def get_product(product_id: str):
+    product = await db.products.get_one({"_id": ObjectId(product_id)}) 
+    if product:
+        product["_id"] = str(product["_id"])
+        return ProductResponse(**product)
+    return {"error": "Product not found"}
+
+@router.delete("/delete-product/{product_id}")
+async def delete_product(product_id: str):
+    result = await db.products.delete_one({"_id": ObjectId(product_id)})
+    if result.deleted_count:
+        return {"message": "Product deleted successfully"}
+    return {"error": "Product not found"}
+
