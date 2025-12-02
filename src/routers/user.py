@@ -3,7 +3,7 @@ from models.user import User, UserResponse
 from database.connection import db 
 from bson import ObjectId
 
-router = APIRouter(prefix="/users", tags=["User"])
+router = APIRouter(prefix="/user", tags=["User"])
 
 @router.post("/create-user", response_model=UserResponse)
 async def create_user(user: User):
