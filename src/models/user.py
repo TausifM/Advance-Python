@@ -11,3 +11,5 @@ class UserResponse(User):
     email: EmailStr = Field(..., description="The email address of the user")
     phone: int = Field(..., description="The phone number of the user")
 
+class UserDuplicateError(BaseModel):
+    error: str = Field(..., description="Error message indicating duplicate user")

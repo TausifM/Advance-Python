@@ -1,16 +1,33 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException, status
 from models.user import User, UserResponse
 from database.connection import db 
 from bson import ObjectId
+from utils.hash import hash_password, verify_password
 
 router = APIRouter(prefix="/user", tags=["User"])
 
 @router.post("/create-user", response_model=UserResponse)
 async def create_user(user: User):
     user_dict = user.model_dump()
+    print(user_dict["password"])
+    user_dict = await db.users.find_one({"email": user_dict["email"]})
+    if user_dict:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail="User with this email already exists"
+            )
+    user_dict["password"] = hash_password(user_dict["password"])
     result = await db.users.insert_one(user_dict) 
     user_dict["_id"] = str(result.inserted_id)
     return UserResponse(**user_dict)
+
+@router.post("/login")
+async def login_user(email: str, password: str):
+    user = await db.users.find_one({"email": email})
+    if user and verify_password(password, user["password"]):
+        user["_id"] = str(user["_id"])
+        return UserResponse(**user)
+    return {"error": "Invalid email or password"}
 
 @router.put('/update-user/{user_id}', response_model=UserResponse)
 async def update_user(user_id: str, user: User):
