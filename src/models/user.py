@@ -13,3 +13,6 @@ class UserResponse(User):
 
 class UserDuplicateError(BaseModel):
     error: str = Field(..., description="Error message indicating duplicate user")
+class LoginRequest(BaseModel):
+    email: str
+    password: str

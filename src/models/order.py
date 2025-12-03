@@ -11,5 +11,10 @@ class Order(BaseModel):
     items: List[OrderItem]
     total_price: float
 
+class OrderResponse(Order):
+    id: str = Field(..., description="The unique identifier of the order", alias="_id")
+    user_id: str
+    items: List[OrderItem]
+    total_price: float
 
 
