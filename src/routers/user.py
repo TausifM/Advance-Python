@@ -34,7 +34,7 @@ async def login_user(login_request: LoginRequest):
 @router.put('/update-user/{user_id}', response_model=UserResponse)
 async def update_user(user_id: str, user: User):
     user_dict = user.model_dump()
-    await db.users.update_one({"_id": ObjectId(user_id)}, {"$set": user_dict}) 
+    await db.users.update_one({"_id": ObjectId(user_id)}, {"$set": user_dict})
     user_dict["_id"] = user_id
     return UserResponse(**user_dict)
 
