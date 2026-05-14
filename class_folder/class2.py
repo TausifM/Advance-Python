@@ -9,7 +9,7 @@ print(f"Name: {name}, Age: {age}, Profession: {profession}, Hobbies: {hobbies}, 
 
 # Unpacking with function arguments
 def print_names(*names):
-    for name in names:
+    for name in names: 
         print(f"Name: {name}")
         
 print_names(["Bob", 25], ["Charlie", 30], ["David", 35])
@@ -30,7 +30,7 @@ print(f"Sorted Combined List: {sorted_combined}") # Sorted Combined List: [1, 2,
 
 # Merging Dictionaries with Unpacking 
 dict1 = {'x': 1, 'y': 2}
-dict2 = {'y': 3, 'z': 4}
+dict2 = {'y': 1, 'z': 4}
 merged_dict = {**dict1, **dict2}
 print(f"Merged Dictionary: {merged_dict}") # Merged Dictionary: {'x': 1, 'y': 3, 'z': 4}
 # Note: In case of key conflicts, the value from the latter dictionary is used.
